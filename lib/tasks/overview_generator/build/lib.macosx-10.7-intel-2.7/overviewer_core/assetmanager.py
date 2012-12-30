@@ -88,9 +88,9 @@ directory.
         dump = dict()
         dump['CONST'] = dict(tileSize=384)
         dump['CONST']['image'] = {
-                'defaultMarker':    'images/signpost.png',
-                'signMarker':       'images/signpost_icon.png',
-                'bedMarker':        'images/bed.png',
+                'defaultMarker':    'assets/signpost.png',
+                'signMarker':       'assets/signpost_icon.png',
+                'bedMarker':        'assets/bed.png',
                 'spawnMarker':      'http://google-maps-icons.googlecode.com/files/home.png',
                 'queryMarker':      'http://google-maps-icons.googlecode.com/files/regroup.png'
                 }

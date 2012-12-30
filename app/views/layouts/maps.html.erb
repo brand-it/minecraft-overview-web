@@ -3,9 +3,10 @@
 <head>
 
 	<%= render "layouts/shared/head"%>
-
+	
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
+	<script type="text/javascript" src="javascript/overviewerConfig.js"></script>
+	<%= javascript_include_tag "application_overview" %>
 	<%= javascript_include_overview %>
 
 </head>

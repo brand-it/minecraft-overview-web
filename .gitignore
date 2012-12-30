@@ -19,7 +19,7 @@ public/render
 public/javascript/*
 public/images/*
 public/css/*
-minecraft_maps/*
+maps/*
 
 *.DS_Store
 .DS_Store
