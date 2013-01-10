@@ -22,6 +22,11 @@ end
 
 gem 'jquery-rails'
 
+# This is for terminal colors. It uses ANSI color system. Same one used on mac.
+gem "colored"
+
+# Deploy System
+gem 'capistrano'
 
 group :development do
   gem 'sqlite3'

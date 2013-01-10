@@ -153,26 +153,27 @@ directory.
     def output_noconfig(self):
 
         # copy web assets into destdir:
-        global_assets = os.path.join(util.get_program_path(), "overviewer_core", "data", "web_assets")
-        global_assets_js = os.path.join(util.get_program_path(), "overviewer_core", "data", "js")
-        global_assets_images = os.path.join(util.get_program_path(), "overviewer_core", "data", "images")
-        global_assets_css = os.path.join(util.get_program_path(), "overviewer_core", "data", "css")
+        # global_assets = os.path.join(util.get_program_path(), "overviewer_core", "data", "web_assets")
+        # global_assets_js = os.path.join(util.get_program_path(), "overviewer_core", "data", "js")
+        # global_assets_images = os.path.join(util.get_program_path(), "overviewer_core", "data", "images")
+        # global_assets_css = os.path.join(util.get_program_path(), "overviewer_core", "data", "css")
        
-        if not os.path.isdir(global_assets_js):
-            global_assets_js = os.path.join(util.get_program_path(), "web_assets")
-        mirror_dir(global_assets_js, self.js_outputdir)
+        # if not os.path.isdir(global_assets_js):
+        #     global_assets_js = os.path.join(util.get_program_path(), "web_assets")
+        # mirror_dir(global_assets_js, self.js_outputdir)
+        # 
+        # if not os.path.isdir(global_assets_images):
+        #     global_assets_images = os.path.join(util.get_program_path(), "web_assets")
+        # mirror_dir(global_assets_images, self.img_outputdir)
+        # 
+        # if not os.path.isdir(global_assets_css):
+        #     global_assets_css = os.path.join(util.get_program_path(), "web_assets")
+        # mirror_dir(global_assets_css, self.css_outputdir)
         
-        if not os.path.isdir(global_assets_images):
-            global_assets_images = os.path.join(util.get_program_path(), "web_assets")
-        mirror_dir(global_assets_images, self.img_outputdir)
-        
-        if not os.path.isdir(global_assets_css):
-            global_assets_css = os.path.join(util.get_program_path(), "web_assets")
-        mirror_dir(global_assets_css, self.css_outputdir)
-        
-        if not os.path.isdir(global_assets):
-            global_assets = os.path.join(util.get_program_path(), "web_assets")
-        mirror_dir(global_assets, self.outputdir)
+		# We have to let this one happen later on the index is needed
+        # if not os.path.isdir(global_assets):
+        #     global_assets = os.path.join(util.get_program_path(), "web_assets")
+        # mirror_dir(global_assets, self.outputdir)
 
         if self.custom_assets_dir:
             # Could have done something fancy here rather than just overwriting
@@ -201,14 +202,14 @@ directory.
                             fout.write(f.read())
         
         # Add time and version in index.html
-        indexpath = os.path.join(self.outputdir, "index.html")
-        
-        index = codecs.open(indexpath, 'r', encoding='UTF-8').read()
-        index = index.replace("{title}", "Minecraft Overviewer")
-        index = index.replace("{time}", time.strftime("%a, %d %b %Y %H:%M:%S %Z", time.localtime()).decode(locale.getpreferredencoding()))
-        versionstr = "%s (%s)" % (util.findGitVersion(), util.findGitHash()[:7])
-        index = index.replace("{version}", versionstr)
-        
-        with FileReplacer(indexpath) as indexpath:
-            with codecs.open(indexpath, 'w', encoding='UTF-8') as output:
-                output.write(index)
+        # indexpath = os.path.join(self.outputdir, "index.html")
+        # 
+        # index = codecs.open(indexpath, 'r', encoding='UTF-8').read()
+        # index = index.replace("{title}", "Minecraft Overviewer")
+        # index = index.replace("{time}", time.strftime("%a, %d %b %Y %H:%M:%S %Z", time.localtime()).decode(locale.getpreferredencoding()))
+        # versionstr = "%s (%s)" % (util.findGitVersion(), util.findGitHash()[:7])
+        # index = index.replace("{version}", versionstr)
+        # 
+        # with FileReplacer(indexpath) as indexpath:
+        #     with codecs.open(indexpath, 'w', encoding='UTF-8') as output:
+        #         output.write(index)

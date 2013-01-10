@@ -20,6 +20,8 @@ public/javascript/*
 public/images/*
 public/css/*
 maps/*
+lib/tasks/overview_generator/build
+*.pyc
 
 *.DS_Store
 .DS_Store
