@@ -10,6 +10,9 @@ set :deploy_to, "/home/rails"
 set :user, "rails"
 set :use_sudo, false
 
+set :rvm_ruby_string, 'ruby-1.9.3-p362@minecraft_master'
+set :rvm_type, :system
+
 server "198.61.203.101", :app, :web, :db, :primary => true
 
 namespace :deploy do
