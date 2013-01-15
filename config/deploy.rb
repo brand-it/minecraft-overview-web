@@ -18,7 +18,7 @@ namespace :deploy do
   desc "Default deploy - updated to run migrations"
   task :default do
     update_code
-    symlink
+    create_symlink
     restart
   end
 end

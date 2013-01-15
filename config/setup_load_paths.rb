@@ -1,14 +1,25 @@
 if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
   begin
-    gems_path = ENV['MY_RUBY_HOME'].split(/@/)[0].sub(/rubies/,'gems')
-    ENV['GEM_PATH'] = "ruby-1.9.3-head@minecraft_master --create"
+    rvm_path     = File.dirname(File.dirname(ENV['MY_RUBY_HOME']))
+    rvm_lib_path = File.join(rvm_path, 'lib')
+    $LOAD_PATH.unshift rvm_lib_path
     require 'rvm'
     RVM.use_from_path! File.dirname(File.dirname(__FILE__))
   rescue LoadError
-    raise "RVM gem is currently unavailable." + gems_path
+    # RVM is unavailable at this point.
+    raise "RVM ruby lib is currently unavailable."
   end
 end
 
-# If you're not using Bundler at all, remove lines bellow
+# If we're using a Bundler 1.0 beta
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
 require 'bundler/setup'
+
+# Or Bundler 0.9...
+if File.exist?(".bundle/environment.rb")
+  require '.bundle/environment'
+else
+  require 'rubygems'
+  require 'bundler'
+  Bundler.setup
+end
