@@ -24,7 +24,7 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 end
-
+before "deploy:restart", "config:assets:precompile"
 after "deploy:create_symlink", "config:symlink_database_yml"
 
 namespace :config do
@@ -35,6 +35,16 @@ namespace :config do
     run "rm -rf ~/shared/database.yml"
     run "mv ~/current/config/database.yml.deploy ~/shared/database.yml"
     run "ln -nfs ~/shared/database.yml ~/current/config/database.yml"
+  end
+  
+  desc "Assets handling"
+  namespace :assets do
+    
+    desc "Precomile assets for server"
+    task :precompile do
+      run "rake assets:clean"
+      run "rake assets:precompile"
+    end
   end
 end
 
