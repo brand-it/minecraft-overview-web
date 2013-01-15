@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+load 'deploy/assets'
 
 set :scm, :git
 set :application, 'MinecraftOverview'
@@ -24,7 +25,7 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 end
-before "deploy:restart", "config:assets:precompile"
+
 after "deploy:create_symlink", "config:symlink_database_yml"
 
 namespace :config do
