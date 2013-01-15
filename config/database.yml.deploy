@@ -1,7 +1,14 @@
 # config/database.yml
-development:
+production:
   adapter: postgresql
   encoding: unicode
   database: minecraftoverview_production
+  pool: 5
+  username: rails
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: minecraftoverview_development
   pool: 5
   username: rails

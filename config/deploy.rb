@@ -18,6 +18,11 @@ namespace :deploy do
     create_symlink
     restart
   end
+  
+  desc "Restarting mod_rails with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
 end
 
 after "deploy:create_symlink", "config:symlink_database_yml"
@@ -27,8 +32,9 @@ namespace :config do
   desc "Move database.yml.deploy to config folder"
   task :symlink_database_yml do
     run "rm -rf ~/current/config/database.yml"
-    run "mv ~/current/config/database.yml.deploy ~/shared/config/database.yml"
-    run "ln -nfs ~/shared/config/database.yml ~/current/config/database.yml"
+    run "rm -rf ~/shared/database.yml"
+    run "mv ~/current/config/database.yml.deploy ~/shared/database.yml"
+    run "ln -nfs ~/shared/database.yml ~/current/config/database.yml"
   end
 end
 
