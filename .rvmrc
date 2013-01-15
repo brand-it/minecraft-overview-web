@@ -1,1 +1,5 @@
-rvm use ruby-1.9.3-head@minecraft_master --create
+if [[ -s "/home/rails/.rvm/gems/ruby-1.9.3-head@minecraft_master" ]] ; then
+  . "/home/rails/.rvm/gems/ruby-1.9.3-head@minecraft_master"
+else
+  rvm use ruby-1.9.3-head@minecraft_master --create
+fi
