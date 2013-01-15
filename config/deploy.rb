@@ -2,13 +2,13 @@ require 'rvm/capistrano'
 require 'bundler/capistrano'
 
 set :scm, :git
-set :application, 'minecraftoverviewweb'
+set :application, 'MinecraftOverview'
 set :repository, "git@github.com:newdark/minecraft-overview-web.git"
 set :deploy_via, :copy
 
 set :deploy_to, "/home/rails"
 set :user, "rails"
-set :use_sudo, false
+set :use_sudo, true
 
 set :rvm_ruby_string,           :local
 
