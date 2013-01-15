@@ -36,16 +36,6 @@ namespace :config do
     run "mv ~/current/config/database.yml.deploy ~/shared/database.yml"
     run "ln -nfs ~/shared/database.yml ~/current/config/database.yml"
   end
-  
-  desc "Assets handling"
-  namespace :assets do
-    
-    desc "Precomile assets for server"
-    task :precompile do
-      run "rake assets:clean"
-      run "rake assets:precompile"
-    end
-  end
 end
 
 
