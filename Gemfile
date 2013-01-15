@@ -27,8 +27,6 @@ gem "colored"
 
 # Deploy System
 gem 'capistrano'
-gem 'rvm-capistrano'
-
 
 group :development do
   gem 'sqlite3'
