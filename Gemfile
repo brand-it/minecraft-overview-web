@@ -25,17 +25,19 @@ gem 'jquery-rails'
 # This is for terminal colors. It uses ANSI color system. Same one used on mac.
 gem "colored"
 
-# Deploy System
-gem 'capistrano'
+# Database Connection plugin
+gem "pg"
 
+# Server application
+gem "passenger"
 group :development do
-  gem 'sqlite3'
+  # Deploy System
+  gem 'capistrano'
 end
 
-group :production do
-  gem "pg"
-  gem "passenger"
-end
+# group :production do
+# 
+# end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

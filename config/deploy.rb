@@ -20,16 +20,15 @@ namespace :deploy do
   end
 end
 
+after "deploy:create_symlink", "config:symlink_database_yml"
+
 namespace :config do
-  desc "Make symlink for config yml files" 
-  task :create_symlink do
-    run "ln -nfs #{deploy_to}/config/*.yml #{release_path}/config"
-  end
   
-  task :create_database_yml do
-    desc "Move database.yml.deploy to config folder"
-    run "mv #{release_path}/config/database.yml.deploy #{deploy_to}/config/database.yml"
-    run "ln -nfs #{release_path}/config/database.yml #{deploy_to}/config/database.yml"
+  desc "Move database.yml.deploy to config folder"
+  task :symlink_database_yml do
+    run "rm -rf ~/current/config/database.yml"
+    run "mv ~/current/config/database.yml.deploy ~/shared/config/database.yml"
+    run "ln -nfs ~/shared/config/database.yml ~/current/config/database.yml"
   end
 end
 
