@@ -9,6 +9,12 @@ namespace :install do
     `sudo python ./tmp/files/Imaging-1.1.7/setup.py install`
     `rm -rf ./tmp/files/Imaging-1.1.7.tar.gz`
   end
+  
+  task :zlib do
+    `cd ./tmp/files/ && curl -O -L http://zlib.net/zlib-1.2.5.tar.gz`
+    `tar -xvf ./tmp/files/zlib-1.2.5.tar.gz`
+  end
+  
   namespace :unix do
     desc "Fix error: command 'gcc' failed with exit status 1"
     task :python_doctor do

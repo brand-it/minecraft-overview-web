@@ -11,6 +11,6 @@ namespace :map do
     `rake map:copy`
     `mkdir ~/maps`
     `mv ./tmp/files/world.tar.gz ~/maps/world.tar.gz`
-    `tar xvf ~/maps/world.tar.gz`
+    `tar -xvf ~/maps/world.tar.gz`
   end
 end

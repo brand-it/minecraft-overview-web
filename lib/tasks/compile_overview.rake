@@ -26,6 +26,7 @@ namespace :compile do
       `python #{Rails.root}/lib/tasks/overview_generator/setup.py clean`
       system("PIL_INCLUDE_DIR=\"#{Rails.root}/tmp/files/Imaging-1.1.7/libImaging\" python #{Rails.root}/lib/tasks/overview_generator/setup.py build")
       `rm -rf #{Rails.root}/tmp/files/Imaging-1.1.7`
+      `wget -N http://s3.amazonaws.com/MinecraftDownload/minecraft.jar -P ~/.minecraft/bin/`
     end
   end
 end
