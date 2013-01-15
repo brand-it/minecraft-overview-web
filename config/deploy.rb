@@ -1,4 +1,3 @@
-require 'rvm/capistrano'
 require 'bundler/capistrano'
 
 set :scm, :git
@@ -9,8 +8,6 @@ set :deploy_via, :copy
 set :deploy_to, "/home/rails"
 set :user, "rails"
 set :use_sudo, true
-
-set :rvm_ruby_string,           :local
 
 server "198.61.203.101", :app, :web, :db, :primary => true
 
