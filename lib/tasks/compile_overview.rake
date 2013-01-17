@@ -31,7 +31,7 @@ namespace :compile do
       
       puts `sudo pip install pillow`
       
-      puts `python #{Rails.root}/lib/tasks/overview_generator/setup.py build`
+      puts `PIL_INCLUDE_DIR=\"#{Rails.root}/tmp/files/Imaging-1.1.7/libImaging\" python #{Rails.root}/lib/tasks/overview_generator/setup.py build`
     end
     desc "Compile Overview for mac"
     task :mac do      

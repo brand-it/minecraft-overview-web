@@ -1,13 +1,13 @@
 namespace :install do
   desc "Setup PIL for MAC or LINUX"
   task :pil do
-    `mkdir ./tmp/files`
-    `cd ./tmp/files/ && curl -O -L http://effbot.org/downloads/Imaging-1.1.7.tar.gz`
-    `cd ./tmp/files/ && tar -xzf Imaging-1.1.7.tar.gz`
-    `sudo python ./tmp/files/Imaging-1.1.7/setup.py clean`
-    `sudo python ./tmp/files/Imaging-1.1.7/setup.py build`
-    `sudo python ./tmp/files/Imaging-1.1.7/setup.py install`
-    `rm -rf ./tmp/files/Imaging-1.1.7.tar.gz`
+    puts `mkdir ./tmp/files`
+    puts `cd ./tmp/files/ && curl -O -L http://effbot.org/downloads/Imaging-1.1.7.tar.gz`
+    puts `cd ./tmp/files/ && tar -xzf Imaging-1.1.7.tar.gz`
+    puts `sudo python ./tmp/files/Imaging-1.1.7/setup.py clean`
+    puts `sudo python ./tmp/files/Imaging-1.1.7/setup.py build`
+    puts `sudo python ./tmp/files/Imaging-1.1.7/setup.py install`
+    puts `rm -rf ./tmp/files/Imaging-1.1.7.tar.gz`
   end
   
   task :zlib do
