@@ -21,6 +21,7 @@ namespace :compile do
   namespace :overview do
     desc "Compile Overview for linux"
     task :linux do
+      puts `rake install:pil`
       puts `sudo apt-get install python-imaging`
       puts `sudo apt-get install python-dev`
       puts `sudo apt-get install python-numpy`
