@@ -15,8 +15,10 @@
 /tmp
 /world/*
 # We are going to use this later however for now we need to make sure they are there when we push to heroku
+render*/*
+render*
+public/render*
 public/render*/*
-public/render
 public/javascript/*
 public/images/*
 public/css/*
