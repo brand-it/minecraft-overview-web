@@ -18,6 +18,7 @@
 render*/*
 render*
 public/render*
+public/assets/*
 public/render*/*
 public/javascript/*
 public/images/*
