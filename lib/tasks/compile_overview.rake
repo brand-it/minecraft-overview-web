@@ -21,17 +21,17 @@ namespace :compile do
   namespace :overview do
     desc "Compile Overview for linux"
     task :linux do
-      `sudo apt-get install python-imaging`
-      `sudo apt-get install python-dev`
-      `sudo apt-get install python-numpy`
+      puts `sudo apt-get install python-imaging`
+      puts `sudo apt-get install python-dev`
+      puts `sudo apt-get install python-numpy`
       
-      `sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib`
-      `sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib`
-      `sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib`
+      puts `sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib`
+      puts `sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib`
+      puts `sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib`
       
-      `pip install -U PIL`
+      puts `sudo pip install pillow`
       
-      `python #{Rails.root}/lib/tasks/overview_generator/setup.py build`
+      puts `python #{Rails.root}/lib/tasks/overview_generator/setup.py build`
     end
     desc "Compile Overview for mac"
     task :mac do      
