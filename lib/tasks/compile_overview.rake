@@ -20,6 +20,14 @@ namespace :compile do
   end
   namespace :overview do
     desc "Compile Overview for mac"
+    
+    task :linux do
+      `sudo apt-get install python-imaging`
+      `sudo apt-get install python-dev`
+      `sudo apt-get install python-numpy`
+      
+      `python #{Rails.root}/lib/tasks/overview_generator/setup.py build`
+    end
     task :mac do      
       `rake install:pil`
       
