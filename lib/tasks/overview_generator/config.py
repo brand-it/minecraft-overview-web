@@ -13,7 +13,7 @@ worlds['South'] = "~/maps/world"
 worlds['West'] = "~/maps/world"
 
 # Define where to put the output here.
-outputdir = "./public"
+outputdir = "~/current/public"
 
 # This is an item usually specified in a renders dictionary below, but if you
 # set it here like this, it becomes the default for all renders that don't

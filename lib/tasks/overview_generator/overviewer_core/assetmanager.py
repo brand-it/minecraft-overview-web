@@ -41,10 +41,10 @@ It can read/parse and write/dump the overviewerConfig.js file into this top-leve
 directory. 
         """
         self.outputdir = outputdir
-        self.js_outputdir = "./public/javascript"
-        self.img_outputdir = "./public/images"
-        self.css_outputdir = "./public/css"
-        self.public_assets = "./public"
+        self.js_outputdir = "~/current/public/javascript"
+        self.img_outputdir = "~/current/public/images"
+        self.css_outputdir = "~/current/public/css"
+        self.public_assets = "~/current/public"
         self.custom_assets_dir = custom_assets_dir
         self.renders = dict()
 

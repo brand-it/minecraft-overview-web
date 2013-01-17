@@ -5,9 +5,6 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -28,11 +25,15 @@ gem "colored"
 # Database Connection plugin
 gem "pg"
 
+gem "sql"
+
 # Server application
 gem "passenger"
 group :development do
   # Deploy System
   gem 'capistrano'
+  # Development Database
+  gem 'sqlite3'
 end
 
 # group :production do
