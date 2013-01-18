@@ -520,7 +520,7 @@ class TileSet(object):
                 minZoom = 0,
                 defaultZoom = self.options.get('defaultzoom'),
                 maxZoom = self.options.get('maxzoom', self.treedepth),
-                path = self.options.get('name'),
+                path = "maps/" + self.options.get('name'),
                 base = self.options.get('base'),
                 bgcolor = bgcolorformat(self.options.get('bgcolor')),
                 world = self.options.get('worldname_orig') +
@@ -1587,7 +1587,6 @@ class RenderTile(object):
 
         """
         path = tuple(path)
-
         depth = len(path)
 
         # Radius of the world in chunk cols/rows

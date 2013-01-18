@@ -64,6 +64,7 @@ directory.
         for conf in self.overviewerConfig['tilesets']:
             if conf['path'] == name:
                 return conf
+                
         return dict()
         
 
@@ -87,7 +88,6 @@ directory.
             get_data = lambda tileset: tileset.get_persistent_data()
         else:
             get_data = lambda tileset: tileset.get_initial_data()
-
         # dictionary to hold the overviewerConfig.js settings that we will dumps
         dump = dict()
         dump['CONST'] = dict(tileSize=384)
@@ -135,6 +135,7 @@ directory.
 
         for tileset in tilesets:
             dump['tilesets'].append(get_data(tileset))
+            
 
             # write a blank image
             blank = Image.new("RGBA", (1,1), tileset.options.get('bgcolor'))

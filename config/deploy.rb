@@ -36,6 +36,7 @@ namespace :config do
     run "rm -rf ~/shared/database.yml"
     run "mv ~/current/config/database.yml.deploy ~/shared/database.yml"
     run "ln -nfs ~/shared/database.yml ~/current/config/database.yml"
+    run "ln -nfs ~/maps ~/current/public/maps"
   end
 end
 

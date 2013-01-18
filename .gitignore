@@ -34,3 +34,5 @@ lib/tasks/overview_generator/overviewer_core/c_overviewer.so
 lib/tasks/overview_generator/overviewer_core/overviewer_version.py
 
 .rvmrc
+
+maps
