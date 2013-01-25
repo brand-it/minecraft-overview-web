@@ -16,5 +16,11 @@
 
 
 $(document).ready(function() {
-  overviewer.util.initialize();
+
+  $(".tooltip-top").tooltip();
+  if (overviewer.length){
+      overviewer.util.initialize();
+  }
+  
 });
+

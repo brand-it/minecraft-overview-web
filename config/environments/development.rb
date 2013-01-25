@@ -30,13 +30,17 @@ MinecraftOverview::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Do not compress assets
-  config.assets.compress = false
+  config.assets.compress = true
 
   # Expands the lines which load the assets
   config.assets.debug = true
   
-  
   # Compile assets True
   config.assets.compile = true
-  config.assets.digest = true
+  
+  # This defaults to false for everything else true for production. It is fingerprinting
+  config.assets.digest = false
+  
+  # Disable Rails's static asset server (Apache or nginx will already do this)
+  config.serve_static_assets = true
 end

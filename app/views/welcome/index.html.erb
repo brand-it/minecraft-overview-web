@@ -3,3 +3,97 @@
 	<p>The Minecraft Overview application is a python, C, and now a rails application. This is a bit of a test to see the power that can come out of using these three things together. It also uses google maps in order to view the map. This tech is a bit hard to do right now and really does not have the scalable tech that I need. It also is going to have the ability to download the map from your Minecraft server along with any other information and use it show stats and information. However that peace is a bit down the road. for now this will do.</p>
 	<%= link_to "View Map", maps_path, class: "btn btn-primary btn-large" %> <%= link_to "Go to McMyAdmin", "http://mcadmin.r3dux.net", class: "btn btn-primary btn-large"%>
 </div>
+<div class="row">
+	<div class="span6">
+		<h3>Overviewer</h3>
+		<p> 
+			With all these cool new peaces of tech I think I 
+			should start of with saying this was made using <a href="http://www.mincraftoverview.com">Minecraft Overviewer</a>.
+			This is some amazing work. Great job I love what you guys have created. Please don't stop creating all this cool new tech. 
+		</p>
+		<p>
+			If you want to know more about this tech you can follow there <a href="https://github.com/overviewer/Minecraft-Overviewer/">Github repo</a>. 
+			I will get around to contributing to this when I have some free time however with work school a girlfriend and this project finding time to work on there project is hard.
+		</p>
+	</div>
+	<div class="span6">
+		<h3>Google Powered</h3>
+		<p> 
+			This system is powered by google maps using a advanced javascript and some very nice tech provided by Minecraft Overviewer.
+			Really this takes very little explaining other then google renders the chucks that you have created and setup in the config folder. 
+			After which you just follow google API and with a lot of trial and error you can make the system render a nice map that is not even real.
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="span12">
+		<h3>Quick Understanding</h3>
+		<p> 
+			I feel that in order to understand what I have created I would need to give you some code that I have created to make this work. 
+			This code I would say right now is not very complicated and really not to hard to understand. 
+			It uses <a href="http://www.mincraftoverview.com">Minecraft Overviewer</a> in order to create the minecraft map of the world folder located in your minecraft server
+			Not only that but the Minecraft Overviewer is powered by the Google maps tech that is out there. 
+			This cool bit of JavaScript is very powerful tool and really helps these complicated maps look amazing.
+		</p>
+		<p>
+			However lets get over what we are using and get into how this system works.
+			First thing I did was set up a nice little config file. This is the one that is currently running if you want to know what setting I'm using.
+			<script src="https://gist.github.com/4630934.js"></script>
+			
+		</p>
+		<p>
+			If you have scrolled down to the bottom I take it you want to learn more about what I have. I will go over this config file. 
+			These settings make my system generate a very large amount of data. 
+			Because I want to show so many angles I am creating like a total of 9 peaces of data in total.
+			The size of this file is exactly <i class="icon-hdd tooltip-top" title="Overviewer generated file size"></i>893.7MB as you can see that is a little to big. The plus to this is every thing is on demand loading. 
+			That means it only loads what it needs as you zoom in rather then loading the hole map.
+		</p>
+		<p>
+			So even with this high amount of file data we still have a very small of data that needs to be loaded. Really I can't expect them to download all the information.
+		</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span9">
+		<h4>Assets Management</h4>
+		<p>
+			This is where it got tricky. If you know Rails 3.2 it uses assets management system which compiles your assets for faster load times and so on. 
+			This is great because it means I get fast load time for my js files and css or sass files. Talk about a win right. 
+			This also means that I need to figure out a way to use the current assets system that this python Minecraft Overviewer uses. 
+			One problem I ran into was the fact that it created a <code>overViewerConfig.js</code> file along with a <code>baseMarkers.js</code> and <code>overviewer.js</code>.
+			So that means my path name needs to be something like <a href="javascript/overviewerConfig.js" target="new">minecraftoverviewer.r3dux.net/javascript/overviewerConfig.js</a>.
+			So in order to get this to happen I had to change the python assets code to place these files there.
+		</p>
+	</div>
+	
+	<div class="span3">
+		<h4>Assetmanager.py</h4>
+		<p>
+			I here is a quick look at what I have done to the assets manager python file.
+			<a href="https://gist.github.com/4631523">My Config File</a>
+		</p>
+		<p>
+			Here is a like also to the <a href="https://github.com/overviewer/Minecraft-Overviewer/blob/master/overviewer_core/assetmanager.py">original</a>
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="span12">
+		<p>
+			Now after all that is done you need to make sure you have static assets on in production.
+			Because not only will you be using compiled assets but you are going to need the static ones that are created by Minecraft Overviewer.
+			You can do this by using this bit of code in your <strong>production.rb</strong> or <strong>development.rb</strong> files <code>config.serve_static_assets = true</code>.
+		</p>
+		<h4>Cap Deploy</h4>
+		<p>
+			This next bit I don't have a lot on. I used <a href="https://github.com/capistrano/capistrano">Capistrano</a> to deploy to a <a href="http://www.rackspace.com/">Rackspace</a> cloud server and the <strong>deploy.rb</strong> file works great. 
+			The only downside is I have yet to fully get this peace of tech working. Mostly because I just go this system up and running <i class="icon-time tooltip-top" title="Dynamicly Updated Time Stamp"></i><%= time_ago_in_words("2013-01-25 03:43:14") %> ago.
+			So really I am just glad it is running. 
+		</p>
+		<h4>More To Come</h4>
+		<p>
+			There is more to come and I hope to keep adding to the system. Keep a eye open and I will keep adding more. 
+		</p>
+	</div>
+</div>
