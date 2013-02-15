@@ -21,6 +21,8 @@
 //= require_tree .
 
 $(document).ready(function(){
-    $(".tooltip").tooltip();
-    overviewer.util.initialize();
+    $(".smooth-tooltip").tooltip();
+    if ($("#mcmap").exists()){
+      overviewer.util.initialize();
+    }
 });
