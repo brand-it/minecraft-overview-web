@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<%= render "layouts/shared/head"%>
+    <title>MinecraftOverview</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <%= javascript_include_tag "application" %>
+    <%= javascript_overviewer_config_content_tag %>
+    <%= javascript_google_maps_content_tag %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= render "layouts/shared/navi"%>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <%= link_to "Minecraft OverViewer", root_path, class: :brand %>
+                <a  href="#"></a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><%= link_to "Welcome", welcome_index_path %></li>
+                        <li><%= link_to "Rendered Map", maps_path %></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
 
-	<div class="container">
-		<%= yield %>
-	</div>
+    <div class="container">
+        <%= yield %>
+    </div>
 </body>
 </html>

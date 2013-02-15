@@ -26,7 +26,7 @@ namespace :deploy do
   end
 end
 
-after "deploy:create_symlink", "config:symlink_database_yml"
+after "deploy:create_symlink", "config:symlink_database_yml", "config:compile_overview"
 
 namespace :config do
   
@@ -37,6 +37,12 @@ namespace :config do
     run "mv ~/current/config/database.yml.deploy ~/shared/database.yml"
     run "ln -nfs ~/shared/database.yml ~/current/config/database.yml"
     run "ln -nfs ~/maps ~/current/public/maps"
+    run "ln -nfs ~/javascript ~/current/public/javascript"
+  end
+  
+  desc "Generate or build the the overview_generator needed if you want to generate a map"
+  task :compile_overview do
+    run "PIL_INCLUDE_DIR=\"~/Imaging-1.1.7/libImaging\" python ~/current/lib/tasks/overview_generator/setup.py build"
   end
 end
 
