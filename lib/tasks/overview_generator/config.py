@@ -1,16 +1,16 @@
 # This is a sample config file, meant to give you an idea of how to format your
 # config file and what's possible.
-
+world_path = "~/shared/maps/world"
 # Define the path to your world here. 'My World' in this case will show up as
 # the world name on the map interface. If you change it, be sure to also change
 # the referenced world names in the render definitions below.
-worlds['North'] = "~/maps/world"
+worlds['North'] = world_path
 
-worlds['East'] = "~/maps/world"
+worlds['East'] = world_path
 
-worlds['South'] = "~/maps/world"
+worlds['South'] = world_path
 
-worlds['West'] = "~/maps/world"
+worlds['West'] = world_path
 
 # Define where to put the output here.
 outputdir = "~/current/public/maps"

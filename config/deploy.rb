@@ -12,6 +12,12 @@ set :use_sudo, false
 
 server "198.61.203.101", :app, :web, :db, :primary => true
 
+# :current_path - 'current' symlink pointing at current release
+# :release_path - 'release' directory being deployed
+# :shared_path - 'shared' directory with shared content
+
+after "deploy:setup", "deploy:prepare_shared"
+
 namespace :deploy do
   desc "Default deploy - updated to run migrations"
   task :default do
@@ -24,6 +30,11 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_path}/tmp/restart.txt"
   end
+  desc "Setup some no standard shared folders"
+  task :prepare_shared do
+    "mkdir #{shared_path}/maps"
+    "mkdir #{shared_path}/javascript"
+  end
 end
 
 after "deploy:create_symlink", "config:symlink_database_yml", "config:compile_overview"
@@ -32,17 +43,17 @@ namespace :config do
   
   desc "Move database.yml.deploy to config folder"
   task :symlink_database_yml do
-    run "rm -rf ~/current/config/database.yml"
-    run "rm -rf ~/shared/database.yml"
-    run "mv ~/current/config/database.yml.deploy ~/shared/database.yml"
-    run "ln -nfs ~/shared/database.yml ~/current/config/database.yml"
-    run "ln -nfs ~/maps ~/current/public/maps"
-    run "ln -nfs ~/javascript ~/current/public/javascript"
+    run "rm -rf #{current_path}/config/database.yml"
+    run "rm -rf #{shared_path}/database.yml"
+    run "mv #{current_path}/config/database.yml.deploy #{shared_path}/database.yml"
+    run "ln -nfs #{shared_path}/database.yml #{current_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/maps #{current_path}/public/maps"
+    run "ln -nfs #{shared_path}/javascript #{current_path}/public/javascript"
   end
   
   desc "Generate or build the the overview_generator needed if you want to generate a map"
   task :compile_overview do
-    run "PIL_INCLUDE_DIR=\"~/Imaging-1.1.7/libImaging\" python ~/current/lib/tasks/overview_generator/setup.py build"
+    run "PIL_INCLUDE_DIR=\"~/Imaging-1.1.7/libImaging\" python #{current_path}/lib/tasks/overview_generator/setup.py build"
   end
 end
 

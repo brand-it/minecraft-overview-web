@@ -21,5 +21,6 @@
 //= require_tree .
 
 $(document).ready(function(){
+    $(".tooltip").tooltip();
     overviewer.util.initialize();
 });
