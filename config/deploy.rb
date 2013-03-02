@@ -32,12 +32,11 @@ namespace :deploy do
   end
   desc "Setup some no standard shared folders"
   task :prepare_shared do
-    "mkdir #{shared_path}/maps"
-    "mkdir #{shared_path}/javascript"
+    `rake setup:cold`
   end
 end
 
-after "deploy:create_symlink", "config:symlink_database_yml", "config:compile_overview"
+after "deploy:create_symlink", "config:symlink_database_yml", "config:compile_overview", "config:symlink"
 
 namespace :config do
   
@@ -47,8 +46,12 @@ namespace :config do
     run "rm -rf #{shared_path}/database.yml"
     run "mv #{current_path}/config/database.yml.deploy #{shared_path}/database.yml"
     run "ln -nfs #{shared_path}/database.yml #{current_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/maps #{current_path}/public/maps"
-    run "ln -nfs #{shared_path}/javascript #{current_path}/public/javascript"
+
+  end
+  
+  desc "Create system links for maps and for javascript"
+  task :symlink_overview do
+    `rake setup:symlink`
   end
   
   desc "Generate or build the the overview_generator needed if you want to generate a map"
