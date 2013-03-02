@@ -36,3 +36,4 @@ lib/tasks/overview_generator/overviewer_core/overviewer_version.py
 .rvmrc
 
 public/maps
+public/javascript
