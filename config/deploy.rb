@@ -18,6 +18,7 @@ server "198.61.203.101", :app, :web, :db, :primary => true
 
 after "deploy:setup", "deploy:prepare_shared"
 
+desc "This is used for deploying"
 namespace :deploy do
   desc "Default deploy - updated to run migrations"
   task :default do
@@ -30,14 +31,21 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_path}/tmp/restart.txt"
   end
+end
+
+after "deploy:cold", "cold:prepare_shared"
+
+desc "This is used for cold deploying"
+namespace :cold do
   desc "Setup some no standard shared folders"
   task :prepare_shared do
     `rake setup:cold`
   end
 end
 
-after "deploy:create_symlink", "config:symlink_database_yml", "config:compile_overview", "config:symlink"
+after "deploy:create_symlink", "config:symlink_database_yml", "config:symlink_overview"
 
+desc "This is used to config that deploy after deploy"
 namespace :config do
   
   desc "Move database.yml.deploy to config folder"
@@ -46,17 +54,11 @@ namespace :config do
     run "rm -rf #{shared_path}/database.yml"
     run "mv #{current_path}/config/database.yml.deploy #{shared_path}/database.yml"
     run "ln -nfs #{shared_path}/database.yml #{current_path}/config/database.yml"
-
   end
   
   desc "Create system links for maps and for javascript"
   task :symlink_overview do
-    `rake setup:symlink`
-  end
-  
-  desc "Generate or build the the overview_generator needed if you want to generate a map"
-  task :compile_overview do
-    run "PIL_INCLUDE_DIR=\"~/Imaging-1.1.7/libImaging\" python #{current_path}/lib/tasks/overview_generator/setup.py build"
+    puts `rake setup:symlink`
   end
 end
 
