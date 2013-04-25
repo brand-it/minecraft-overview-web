@@ -1,0 +1,8 @@
+<%= form_for @map do |form| %>
+	<fieldset>
+	    <legend>New Minecraft Map</legend>
+		<%= render "maps/form", form: form %>
+		<%= link_to "GoTo Maps", maps_path, class: "btn" %>
+		<%= form.submit "Create Map", class: "btn btn-primary" %>
+	</fieldset>
+<% end %>

@@ -2,11 +2,13 @@ MinecraftOverview::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
-  resources :welcome
+  resources :welcome, only: [ :index ]
+  match 'welcome' => 'welcome#index' # welcome_path
   
   resources :overview_generators
   
   resources :maps
+  
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

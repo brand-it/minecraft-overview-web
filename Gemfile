@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '>= 3.2.11'
+
+# Development Database
+# gem 'sqlite3'
+gem "pg" # Database Connection plugin
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -14,28 +18,32 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
+  gem 'less-rails' # http://lesscss.org/
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.3.0'
 end
 
 gem 'jquery-rails'
 
 # This is for terminal colors. It uses ANSI color system. Same one used on mac.
-gem "colored" # url:http://rubydoc.info/gems/colored/1.2/frames
+gem 'colored' # url:http://rubydoc.info/gems/colored/1.2/frames
 
-# Database Connection plugin
-gem "pg"
+group :production do
+  gem 'passenger', '>= 4.0.0.rc4' # Server application
+  gem 'sql'
+end
 
-gem "sql"
-
-# Server application
-gem "passenger"
 group :development do
   # Deploy System
   gem 'capistrano'
-  # Development Database
-  gem 'sqlite3'
+end
+
+group :test, :development do
+  gem 'rspec-rails', '~> 2.0' # https://github.com/rspec/rspec-rails
+  gem 'factory_girl_rails' # https://github.com/thoughtbot/factory_girl
+  gem 'ZenTest', '~> 4.4.2'
+  gem 'autotest-rails'
 end
 
 # group :production do

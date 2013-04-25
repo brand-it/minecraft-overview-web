@@ -1,18 +1,18 @@
 module ApplicationHelper
   
-  def javascript_google_maps_content_tag(options = {})
-    content_tag(:script, nil, { :type => Mime::JS, src: "http://maps.google.com/maps/api/js?sensor=false" }.merge(options))
+  def overviewer_config_path
+    'javascript/overviewerConfig.js'
   end
   
-  def javascript_overviewer_config_content_tag(options = {})
-    content_tag(:script, nil, { :type => Mime::JS, src: "javascript/overviewerConfig.js" }.merge(options))
+  def google_api_maps_path
+    "http://maps.google.com/maps/api/js?sensor=false"
   end
   
-  def overview_javascript_content_tag(source, options = {})
-    content_tag(:script, nil, { :type => Mime::JS, src: ("assets/maps/" + source) }.merge(options))
+  def javascript_google_maps_content_tag( options = {} )
+    content_tag(:script, nil, { :type => Mime::JS, src: google_api_maps_path }.merge(options))
   end
   
-  def overview_css_tag(source, options = {})
-    tag(:link, {href: "assets/" + source, media: :all, rel: :stylesheet, type: Mime::CSS}.merge(options))
+  def javascript_overviewer_config_content_tag( options = {} )
+    content_tag(:script, nil, { :type => Mime::JS, src: overviewer_config_path }.merge(options)) if File.exist?(overviewer_config_path)
   end
 end

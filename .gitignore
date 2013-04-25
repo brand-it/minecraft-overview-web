@@ -37,3 +37,5 @@ lib/tasks/overview_generator/overviewer_core/overviewer_version.py
 
 public/maps
 public/javascript
+
+.ruby-version

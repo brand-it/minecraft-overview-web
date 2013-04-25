@@ -22,22 +22,23 @@
                     <a  href="#"></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li><%= link_to "Welcome", welcome_index_path %></li>
+                            <li><%= link_to "Welcome", welcome_path %></li>
                             <li><%= link_to "Rendered Map", maps_path %></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Go-To <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><%= link_to "McMyAdmin", "http://mcadmin.r3dux.net"%></li>
                                     <li><%= link_to "r3dux.net", "http://r3dux.net"%></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
+                                </ul><!-- .dropdown-menu -->
+                            </li><!-- .dropdown -->
+                        </ul><!-- .nav -->
+                    </div><!-- .nav-collapse -->
+                </div><!-- .container -->
+            </div> <!-- .navbar-inner -->
+        </div><!-- .navbar .navbar-inverse .navbar-fixed-top -->
 
         <div class="container">
+			<%= bootstrap_flash %>
             <%= yield %>
         </div>
     </body>

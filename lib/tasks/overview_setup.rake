@@ -20,9 +20,9 @@ overviewer_generator_path = "#{Rails.root}/lib/tasks/overview_generator"
 # Python Image Library or the url to the python_image
 python_imaging_url = "http://effbot.org/downloads/Imaging-1.1.7.tar.gz"
 
-complete_message = "complete".green
-failed_message = "failed".red
-success_message = "Task has been completed".green
+complete_message  = "complete".green
+failed_message    = "failed".red
+success_message   = "Task has been completed".green
 
 namespace :setup do
   
