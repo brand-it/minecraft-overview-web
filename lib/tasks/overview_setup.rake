@@ -8,8 +8,10 @@ temp_downloads_path       = "#{Rails.root}/tmp/downloads" # These are all the fi
 javascript_path           = "#{Rails.root}/public/javascript"
 maps_path                 = "#{Rails.root}/public/maps"
 minecraft_bin_path        = "#{home_path}/.minecraft/bin"
-world_map_path            = maps_path + "world"
+world_maps_path           = maps_path + "/world"
 download_maps_path        = maps_path + "/downloaded"
+
+sys_download_maps_path    = "#{shared_public_path}/maps/downloaded"
 
 # This is the public constant data. Information that should not change when you do a cap deploy or any type of deploy
 sys_maps_path             = "#{shared_public_path}/maps" # These show a mirror to the application however they are not required. Please mirror to deploy.rb
@@ -27,16 +29,24 @@ failed_message    = "failed".red
 success_message   = "Task has been completed".green
 error_message     = "Task could not be completed".red
 
+namespace :doctor do
+  desc "This is just a nice way to check the health of everything. It will check to see if all your paths are there."
+  task :who do
+    paths = [home_path, shared_path, shared_public_path, temp_downloads_path, javascript_path, maps_path, minecraft_bin_path, world_maps_path, download_maps_path, sys_maps_path, sys_javascript_path, overviewer_config_path, overviewer_generator_path, "#{maps_path}/world"]
+    paths.each do |path|
+      print "Checking #{path}....."
+      puts File.exists?(path) ? "Found".green : "Missing".red
+    end
+  end
+end
+
+
 namespace :setup do
   
-  desc "Setup for mac and linux cold. Run this command if you want to build the file paths"
+  desc "Setup for mac and linux cold it will discover what OS your using and choose correctly"
   task :cold do
-    make_paths = [temp_downloads_path, shared_path, shared_public_path, sys_maps_path, sys_javascript_path, download_maps_path]
-    for make_path in make_paths
-      print ("mkdir -p " + make_path + "... ").yellow
-      system "mkdir -p " + make_path
-      puts (File.exists?(make_path) ? complete_message : failed_message)
-    end
+
+    Rake::Task['setup:paths:cold'].invoke
     
     case RUBY_PLATFORM
     when "x86_64-darwin11.3.0"
@@ -49,27 +59,65 @@ namespace :setup do
       puts (File.exists?(minecraft_bin_path) ? complete_message : failed_message)
     end
     
-    Rake::Task['setup:symlink'].invoke
-    
     Rake::Task['compile:python_imaging'].invoke
     
     Rake::Task['compile:overviewer'].invoke
     
-    Rake::Task['map:copy'].invoke
-    
-    Rake::Task['map:generate'].invoke
+    Rake::Task['map:cold'].invoke
   end
   
-  desc "Create system links between maps, and javascript paths"
-  task :symlink do
-    print "ln -nfs #{sys_maps_path} #{maps_path} ... ".yellow
-    `ln -nfs #{sys_maps_path} #{maps_path}` # Don't need the -nfs but it is a nice extra PLEASE LOOK UP before removing
-    puts (File.exists?(sys_maps_path) ? complete_message : failed_message)
+  
+  namespace :paths do
     
-    print "ln -nfs #{sys_javascript_path} #{javascript_path} ... ".yellow
-    `ln -nfs #{sys_javascript_path} #{javascript_path}` # Don't need the -nfs but it is a nice extra PLEASE LOOK UP before removing
-    puts (File.exists?(sys_javascript_path) ? complete_message : failed_message)
+    create_paths = [temp_downloads_path, shared_path, shared_public_path, sys_maps_path, sys_javascript_path, sys_download_maps_path]
+    destroy_paths = create_paths + [maps_path]
+    
+    # It will create all the directories/folders/files
+    task :create do
+      for path in create_paths
+        print ("mkdir -p " + path + "... ").yellow
+        system "mkdir -p " + path
+        puts (File.exists?(path) ? complete_message : failed_message)
+      end
+    end
+    
+    
+    desc "First Time building the paths"
+    task :cold do
+      
+      Rake::Task['setup:paths:create'].invoke
+      
+      Rake::Task['setup:paths:symlink'].invoke
+      
+      puts "Asking The Doctor what he thinks".yellow
+      Rake::Task['doctor:who'].invoke
+    end
+    desc "Destroy all the paths created by build "
+    task :destroy do
+      for path in destroy_paths
+        print ("rm -rf " + path + "... ").yellow
+        system "rm -rf " + path
+        puts (File.exists?(path) ? failed_message : complete_message)
+      end
+      
+      puts "Asking The Doctor what he thinks".yellow
+      
+      Rake::Task['doctor:who'].invoke
+    end
+    
+    desc "Create system links between maps, and javascript paths"
+    task :symlink do
+      print "ln -nfs #{sys_maps_path} #{maps_path} ... ".yellow
+      `ln -nfs #{sys_maps_path} #{maps_path}` # Don't need the -nfs but it is a nice extra PLEASE LOOK UP before removing
+      puts (File.exists?(sys_maps_path) ? complete_message : failed_message)
+    
+      print "ln -nfs #{sys_javascript_path} #{javascript_path} ... ".yellow
+      `ln -nfs #{sys_javascript_path} #{javascript_path}` # Don't need the -nfs but it is a nice extra PLEASE LOOK UP before removing
+      puts (File.exists?(sys_javascript_path) ? complete_message : failed_message)
+    end
   end
+  
+
   
   desc "Setup For Mac"
   task :mac do
@@ -78,14 +126,14 @@ namespace :setup do
   
   desc "Setup For Linux"
   task :linux do
-    `sudo apt-get install python-imaging`
-    `sudo apt-get install python-dev`
-    `sudo apt-get install python-numpy`
-    `sudo apt-get install python-scipy`
+    `apt-get install python-imaging`
+    `apt-get install python-dev`
+    `apt-get install python-numpy`
+    `apt-get install python-scipy`
     
-    `sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib` # link the correct image paths to the correct dirrectory
-    `sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib` # link the correct image paths to the correct dirrectory
-    `sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib` # link the correct image paths to the correct dirrectory
+    `ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib` # link the correct image paths to the correct dirrectory
+    `ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib` # link the correct image paths to the correct dirrectory
+    `ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib` # link the correct image paths to the correct dirrectory
   end
 end
 
@@ -95,9 +143,9 @@ namespace :compile do
   task :python_imaging do
     `cd #{temp_downloads_path} && curl -O -L #{python_imaging_url}`
     `cd #{temp_downloads_path} && tar -xzf Imaging-1.1.7.tar.gz`
-    `sudo python #{temp_downloads_path}/Imaging-1.1.7/setup.py clean`
-    `sudo python #{temp_downloads_path}/Imaging-1.1.7/setup.py build`
-    `sudo python #{temp_downloads_path}/Imaging-1.1.7/setup.py install`
+    `python #{temp_downloads_path}/Imaging-1.1.7/setup.py clean`
+    `python #{temp_downloads_path}/Imaging-1.1.7/setup.py build`
+    `python #{temp_downloads_path}/Imaging-1.1.7/setup.py install`
   end
   
   desc "Setup overview generater or better we are going to compile the setup.py information"
@@ -115,8 +163,28 @@ namespace :compile do
 end
 
 namespace :map do
+  desc "First Time setup for you maps"
+  task :cold do
+    
+    Rake::Task['map:copy'].invoke
+    
+    Rake::Task['map:unzip'].invoke
+    
+    Rake::Task['map:generate'].invoke
+  end
+  
+  desc "It will destroy all your map information will not ask it just does"
+  task :implode do
+    print "DESTROYING ALL MAP INFORMATION.....".red
+    `rm -rf #{download_maps_path}/world.tar.gz`
+    `rm -rf #{maps_path}/world`
+    puts complete_message
+  end
+  
   desc "Generate the map located in #{sys_javascript_path}"
   task :generate do
+    
+    puts "We could not located a map in this path #{maps_path}/world".red unless File.exists?("#{world_maps_path}")
     puts `python #{overviewer_generator_path}/overviewer.py --config=#{overviewer_config_path}`
     puts (File.exists?(overviewer_generator_path) ? complete_message : failed_message)
   end
@@ -137,9 +205,13 @@ namespace :map do
     puts (File.exists?("#{download_maps_path}/world.tar.gz") ? success_message : error_message)
   end
   
+  desc "Unzip your downloaded map run rake map:copy first"
   task :unzip do
+    
+    puts "We could not locate needed file in this path #{download_maps_path}/world.tar.gz".red unless File.exists?("#{download_maps_path}/world.tar.gz")
+      
     puts "Unziping #{download_maps_path}/world.tar.gz and moving it to #{maps_path}".yellow
-    `gzip -d #{download_maps_path}/world.tar.gz #{maps_path}`
-    puts (File.exists?("#{maps_path}/world") ? sucess_message : error_message)
+    `tar xvzf #{download_maps_path}/world.tar.gz -C #{maps_path}`
+    puts (File.exists?("#{world_maps_path}") ? success_message : error_message)
   end
 end
