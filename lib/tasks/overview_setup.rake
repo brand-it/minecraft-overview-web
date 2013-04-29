@@ -8,6 +8,8 @@ temp_downloads_path       = "#{Rails.root}/tmp/downloads" # These are all the fi
 javascript_path           = "#{Rails.root}/public/javascript"
 maps_path                 = "#{Rails.root}/public/maps"
 minecraft_bin_path        = "#{home_path}/.minecraft/bin"
+world_map_path            = maps_path + "world"
+download_maps_path        = maps_path + "/downloaded"
 
 # This is the public constant data. Information that should not change when you do a cap deploy or any type of deploy
 sys_maps_path             = "#{shared_public_path}/maps" # These show a mirror to the application however they are not required. Please mirror to deploy.rb
@@ -23,12 +25,13 @@ python_imaging_url = "http://effbot.org/downloads/Imaging-1.1.7.tar.gz"
 complete_message  = "complete".green
 failed_message    = "failed".red
 success_message   = "Task has been completed".green
+error_message     = "Task could not be completed".red
 
 namespace :setup do
   
   desc "Setup for mac and linux cold. Run this command if you want to build the file paths"
   task :cold do
-    make_paths = [temp_downloads_path, shared_path, shared_public_path, sys_maps_path, sys_javascript_path]
+    make_paths = [temp_downloads_path, shared_path, shared_public_path, sys_maps_path, sys_javascript_path, download_maps_path]
     for make_path in make_paths
       print ("mkdir -p " + make_path + "... ").yellow
       system "mkdir -p " + make_path
@@ -114,17 +117,29 @@ end
 namespace :map do
   desc "Generate the map located in #{sys_javascript_path}"
   task :generate do
-    print "python #{overviewer_generator_path}/overviewer.py --config=#{overviewer_config_path} ... ".yellow
     puts `python #{overviewer_generator_path}/overviewer.py --config=#{overviewer_config_path}`
     puts (File.exists?(overviewer_generator_path) ? complete_message : failed_message)
   end
   
   desc "Copy the map from the sever. This will be removed an not used in the future."
   task :copy do
-    puts "This more then likely this will not work. It is going to blow up. If it does the system will not work."
-    `ssh mcmyadmin@mcadmin.r3dux.net 'cd ~/mcmyadmin/Minecraft/ && tar -cvf ~/world.tar world && gzip ~/world.tar'` # This is bad fix it
+    # Static informaiton for now. Update in the future
+    puts "Copying the Map information from the server".yellow
+    `ssh mcmyadmin@mcadmin.r3dux.net 'rm -rf world.tar.gz && cd ~/mcmyadmin/Minecraft/ && tar -cvf ~/world.tar world && gzip ~/world.tar'`
     puts "logged-in and ran commands".green
-    `scp mcmyadmin@mcadmin.r3dux.net:~/world.tar.gz #{Rails.root}/tmp/downloads/`
-    puts success_message
+    
+    # Remote old world file. Switching commmand to version in future.
+    `rm -rf #{download_maps_path}/world.tar.gz`
+    puts "Removed world.tar.gz from folder".green
+    
+    puts "Downloading file from server ...".yellow
+    `scp mcmyadmin@mcadmin.r3dux.net:~/world.tar.gz #{download_maps_path}/world.tar.gz`
+    puts (File.exists?("#{download_maps_path}/world.tar.gz") ? success_message : error_message)
+  end
+  
+  task :unzip do
+    puts "Unziping #{download_maps_path}/world.tar.gz and moving it to #{maps_path}".yellow
+    `gzip -d #{download_maps_path}/world.tar.gz #{maps_path}`
+    puts (File.exists?("#{maps_path}/world") ? sucess_message : error_message)
   end
 end
