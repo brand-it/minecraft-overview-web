@@ -1,7 +1,7 @@
 class Welcome < ActiveRecord::Migration
   def up
     create_table :welcomes do |t|
-      t.columns :timestamps
+      t.timestamps
     end
   end
 

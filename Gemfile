@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://gems.github.com'
 
 gem 'rails', '>= 3.2.11'
 
@@ -27,11 +28,11 @@ end
 gem 'jquery-rails'
 
 # This is for terminal colors. It uses ANSI color system. Same one used on mac.
-gem 'colored' # url:http://rubydoc.info/gems/colored/1.2/frames
+gem "colored" # url:http://rubydoc.info/gems/colored/1.2/frames
+
 
 group :production do
   gem 'passenger', '>= 4.0.0.rc4' # Server application
-  gem 'sql'
 end
 
 group :development do
@@ -40,10 +41,11 @@ group :development do
 end
 
 group :test, :development do
+  
+  gem 'ZenTest', '~> 4.9.1'
+  gem 'autotest-growl', '~> 0.2.6'
   gem 'rspec-rails', '~> 2.0' # https://github.com/rspec/rspec-rails
   gem 'factory_girl_rails' # https://github.com/thoughtbot/factory_girl
-  gem 'ZenTest', '~> 4.4.2'
-  gem 'autotest-rails'
 end
 
 # group :production do
