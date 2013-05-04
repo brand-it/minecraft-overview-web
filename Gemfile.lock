@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   remote: http://gems.github.com/
   specs:
+    RedCloth (4.2.9)
     ZenTest (4.9.1)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
@@ -159,6 +160,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   ZenTest (~> 4.9.1)
   autotest-growl (~> 0.2.6)
   capistrano

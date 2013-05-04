@@ -31,6 +31,7 @@ gem 'jquery-rails'
 gem "colored" # url:http://rubydoc.info/gems/colored/1.2/frames
 
 
+
 group :production do
   gem 'passenger', '>= 4.0.0.rc4' # Server application
 end
@@ -38,12 +39,12 @@ end
 group :development do
   # Deploy System
   gem 'capistrano'
+  gem 'RedCloth' # https://github.com/jgarber/redcloth only REQUIRED by rake docs:guides only used for development currently
 end
 
 group :test, :development do
-  
-  gem 'ZenTest', '~> 4.9.1'
-  gem 'autotest-growl', '~> 0.2.6'
+  gem 'ZenTest', '~> 4.9.1' # https://github.com/seattlerb/zentest
+  gem 'autotest-growl', '~> 0.2.6' # https://github.com/svoop/autotest-growl.git
   gem 'rspec-rails', '~> 2.0' # https://github.com/rspec/rspec-rails
   gem 'factory_girl_rails' # https://github.com/thoughtbot/factory_girl
 end

@@ -4,4 +4,8 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+require "#{Rails.root}/lib/tasks/task_helper" # Custom task helper 
+include TaskHelper
+
 MinecraftOverview::Application.load_tasks
+

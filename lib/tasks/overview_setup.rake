@@ -1,8 +1,3 @@
-# This is the setup information. Root path names and other things like that go here 
-home_path                 = `echo $HOME`.gsub("\n", "") # This will resolve the absolute path of your home directory
-shared_path               = "#{home_path}/shared"
-shared_public_path        = "#{shared_path}/public"
-
 # This is path information for the current application that you are working on
 temp_downloads_path       = "#{Rails.root}/tmp/downloads" # These are all the files downloaded
 javascript_path           = "#{Rails.root}/public/javascript"
@@ -23,11 +18,6 @@ overviewer_generator_path = "#{Rails.root}/lib/tasks/overview_generator"
 
 # Python Image Library or the url to the python_image
 python_imaging_url = "http://effbot.org/downloads/Imaging-1.1.7.tar.gz"
-
-complete_message  = "complete".green
-failed_message    = "failed".red
-success_message   = "Task has been completed".green
-error_message     = "Task could not be completed".red
 
 namespace :doctor do
   desc "This is just a nice way to check the health of everything. It will check to see if all your paths are there."

@@ -1,18 +1,18 @@
+##
+# Custom bootstrap helper
 module BootstrapHelper
-  # Add Button class to options
-  def add_button_class( options = {} )
-    if options[:class].present?
-      options[:class] = options[:class].lines.to_a << "btn" # => ["something", "btn"]
-      options[:class].join(" ") # => "something btn"
-    else
-      options[:class] = "btn" # => "btn"
-    end
-    options
-  end
   
-  def link_to_with_icon(link_name, path, bootstrap_icon = "icon-home", options = {} )
-    link_to path, options do
-      content_tag(:i, nil, class: bootstrap_icon) + link_name
-    end
+  # Standard boot strap icons
+  #
+  #    bootstrap_icon #=> "<i class=\"new-icon\"></i>"
+  #    
+  #    bootstrap_icon("icon-other", id: "id") #=> "<i class=\"new-other\" id=\"id\"></i>"
+  #
+  # call-seq:
+  #    bootstrap_icon(icon_name = "icon-home", options = {}) => String
+  
+  def bootstrap_icon(icon_name = "icon-home", options = {})
+    name = options[:name] # Remove name from list and return its value
+    content_tag(name || :i , nil, {class: icon_name}.merge(options) ) # Return
   end
 end
