@@ -32,8 +32,6 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
-    autotest (4.4.6)
-      ZenTest (>= 4.4.1)
     autotest-growl (0.2.16)
     builder (3.0.4)
     capistrano (2.15.4)
@@ -164,7 +162,6 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   ZenTest (~> 4.9.1)
-  autotest
   autotest-growl (~> 0.2.6)
   capistrano
   coffee-rails (~> 3.2.1)
