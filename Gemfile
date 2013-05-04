@@ -30,7 +30,8 @@ gem 'jquery-rails'
 # This is for terminal colors. It uses ANSI color system. Same one used on mac.
 gem "colored" # url:http://rubydoc.info/gems/colored/1.2/frames
 
-
+# Required in production for autotest/discover.rb
+gem 'autotest-growl', '~> 0.2.6' # https://github.com/svoop/autotest-growl.git
 
 group :production do
   gem 'passenger', '>= 4.0.0.rc4' # Server application
@@ -44,7 +45,7 @@ end
 
 group :test, :development do
   gem 'ZenTest', '~> 4.9.1' # https://github.com/seattlerb/zentest
-  gem 'autotest-growl', '~> 0.2.6' # https://github.com/svoop/autotest-growl.git
+
   gem 'rspec-rails', '~> 2.0' # https://github.com/rspec/rspec-rails
   gem 'factory_girl_rails' # https://github.com/thoughtbot/factory_girl
 end
