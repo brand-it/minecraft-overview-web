@@ -171,7 +171,7 @@ DEPENDENCIES
   less-rails
   passenger (>= 4.0.0.rc4)
   pg
-  rails (>= 3.2.11)
+  rails (>= 3.2.13)
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   therubyracer
