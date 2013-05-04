@@ -1,4 +1,4 @@
-unless Rails.env.prodution?
+if Rails.env.development? || Rails.env.test?
   Autotest::Growl::clear_terminal = false
 
   Autotest.add_hook :initialize do |at|
