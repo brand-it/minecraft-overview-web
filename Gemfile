@@ -31,6 +31,7 @@ gem 'jquery-rails'
 gem "colored" # url:http://rubydoc.info/gems/colored/1.2/frames
 
 # Required in production for autotest/discover.rb
+gem 'autotest'
 gem 'autotest-growl', '~> 0.2.6' # https://github.com/svoop/autotest-growl.git
 
 group :production do
@@ -45,7 +46,6 @@ end
 
 group :test, :development do
   gem 'ZenTest', '~> 4.9.1' # https://github.com/seattlerb/zentest
-
   gem 'rspec-rails', '~> 2.0' # https://github.com/rspec/rspec-rails
   gem 'factory_girl_rails' # https://github.com/thoughtbot/factory_girl
 end
