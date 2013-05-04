@@ -33,10 +33,6 @@ describe ApplicationHelper do
   end
   
   describe "#javascript_overviewer_config_content_tag" do
-    it "should not create a new content tag and return nil" do
-      expect( javascript_overviewer_config_content_tag ).to eq(nil)
-    end
-    
     it "should create a new content tag and type as javascript" do
       File.stub(:exist?).and_return(true)
       expect( javascript_overviewer_config_content_tag ).to eq("<script src=\"javascript/overviewerConfig.js\" type=\"text/javascript\"></script>")

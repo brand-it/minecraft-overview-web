@@ -61,14 +61,12 @@ module ApplicationHelper
   #
   #    javascript_overviewer_config_content_tag #=> "<script src=\"javascript/overviewerConfig.js\" type=\"text/javascript\"></script>"
   #    
-  #    returns nil unless File.exist?(overviewer_config_path)
-  #    javascript_overviewer_config_content_tag #=> nil
   #
   # call-seq:
   #    javascript_overviewer_config_content_tag( options = {} ) => String
   
   def javascript_overviewer_config_content_tag( options = {} )
-    content_tag(:script, nil, { :type => Mime::JS, src: overviewer_config_path }.merge(options)) if File.exist?(overviewer_config_path)
+    content_tag(:script, nil, { :type => Mime::JS, src: overviewer_config_path }.merge(options))
   end
   
 end
