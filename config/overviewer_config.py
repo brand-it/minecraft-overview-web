@@ -27,100 +27,107 @@ nether = [Base(), EdgeLines(), Nether()]
 normal_title = "Default"
 night_title  = "Night"
 cave_title   = "Caves"
-
+nether_title = "Nether"
 
 
 renders["render1"] = {
-        'world': 'North',
-        'title': normal_title,
-		'northdirection': 'upper-left'
+    "world": "North",
+    "title": normal_title,
+    "rendermode": smooth_lighting,
+    "dimension": "overworld",
 }
-# This example is the same as above, but rotated
-renders["render2"] = {
-        'world': 'North',
-		'rendermode': lit_subway_cave_smooth,
-        'title': cave_title,
-		'northdirection': 'upper-left'
-}
-
-# Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
-renders["render3"] = {
-        'world': 'North',
-        'title': night_title,
-        # Notice how this overrides the rendermode default specified above
-        'rendermode': 'night',
-		'northdirection': 'upper-left'
-}
-
-
-
-renders["render4"] = {
-        'world': 'East',
-        'title': normal_title,
-		'northdirection': 'upper-right'
-}
-# This example is the same as above, but rotated
-renders["render5"] = {
-        'world': 'East',
-		'rendermode': lit_subway_cave_smooth,
-        'title': cave_title,
-		'northdirection': 'upper-right'
-}
-
-# Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
-renders["render6"] = {
-        'world': 'East',
-        'title': night_title,
-        # Notice how this overrides the rendermode default specified above
-        'rendermode': 'night',
-		'northdirection': 'upper-right'
-}
-
-
-renders["render7"] = {
-        'world': 'South',
-        'title': normal_title,
-		'northdirection': 'lower-left'
-}
-# This example is the same as above, but rotated
-renders["render8"] = {
-        'world': 'South',
-		'rendermode': lit_subway_cave_smooth,
-        'title': cave_title,
-		'northdirection': 'lower-left'
-}
-
-# Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
-renders["render9"] = {
-        'world': 'South',
-        'title': night_title,
-        # Notice how this overrides the rendermode default specified above
-        'rendermode': 'night',
-		'northdirection': 'lower-left'
-}
-
-
-renders["render10"] = {
-        'world': 'West',
-        'title': normal_title,
-		'northdirection': 'lower-right'
-}
-# This example is the same as above, but rotated
-renders["render11"] = {
-        'world': 'West',
-		'rendermode': lit_subway_cave_smooth,
-        'title': cave_title,
-		'northdirection': 'lower-right'
-}
-
-# Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
-renders["render12"] = {
-        'world': 'West',
-        'title': night_title,
-        # Notice how this overrides the rendermode default specified above
-        'rendermode': 'night',
-		'northdirection': 'lower-right'
-}
+# renders["render2"] = {
+#         'world': 'North',
+#         'title': nether_title,
+#         'northdirection': 'upper-left'
+#         "dimension": "nether"
+# }
+# # This example is the same as above, but rotated
+# renders["render2"] = {
+#         'world': 'North',
+#         'rendermode': lit_subway_cave_smooth,
+#         'title': cave_title,
+#         'northdirection': 'upper-left'
+# }
+# 
+# # Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
+# renders["render3"] = {
+#         'world': 'North',
+#         'title': night_title,
+#         # Notice how this overrides the rendermode default specified above
+#         'rendermode': 'night',
+#         'northdirection': 'upper-left'
+# }
+# 
+# 
+# 
+# renders["render4"] = {
+#         'world': 'East',
+#         'title': normal_title,
+#         'northdirection': 'upper-right'
+# }
+# # This example is the same as above, but rotated
+# renders["render5"] = {
+#         'world': 'East',
+#         'rendermode': lit_subway_cave_smooth,
+#         'title': cave_title,
+#         'northdirection': 'upper-right'
+# }
+# 
+# # Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
+# renders["render6"] = {
+#         'world': 'East',
+#         'title': night_title,
+#         # Notice how this overrides the rendermode default specified above
+#         'rendermode': 'night',
+#         'northdirection': 'upper-right'
+# }
+# 
+# 
+# renders["render7"] = {
+#         'world': 'South',
+#         'title': normal_title,
+#         'northdirection': 'lower-left'
+# }
+# # This example is the same as above, but rotated
+# renders["render8"] = {
+#         'world': 'South',
+#         'rendermode': lit_subway_cave_smooth,
+#         'title': cave_title,
+#         'northdirection': 'lower-left'
+# }
+# 
+# # Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
+# renders["render9"] = {
+#         'world': 'South',
+#         'title': night_title,
+#         # Notice how this overrides the rendermode default specified above
+#         'rendermode': 'night',
+#         'northdirection': 'lower-left'
+# }
+# 
+# 
+# renders["render10"] = {
+#         'world': 'West',
+#         'title': normal_title,
+#         'northdirection': 'lower-right'
+# }
+# # This example is the same as above, but rotated
+# renders["render11"] = {
+#         'world': 'West',
+#         'rendermode': lit_subway_cave_smooth,
+#         'title': cave_title,
+#         'northdirection': 'lower-right'
+# }
+# 
+# # Here's how to do a nighttime render. Also try "smooth_night" instead of "night"
+# renders["render12"] = {
+#         'world': 'West',
+#         'title': night_title,
+#         # Notice how this overrides the rendermode default specified above
+#         'rendermode': 'night',
+#         'northdirection': 'lower-right'
+# }
 
 
 
