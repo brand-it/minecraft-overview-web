@@ -58,8 +58,8 @@ namespace :config do
   
   desc "Create system links for maps and for javascript"
   task :symlink_overview do
-    puts `rake setup:paths:symlink`
-    puts `rake doctor:who`
+    puts `cd #{current_path} && rake setup:paths:symlink`
+    puts `cd #{current_path} && rake doctor:who`
   end
 end
 

@@ -79,4 +79,24 @@ module TaskHelper
   def public_path
     "#{Rails.root}/public"
   end
+  
+  # Check if the path is there and provide a user frendly output to console
+  #
+  # This is going to return a string of the value that is being send as a puts event
+  #
+  # call-seq:
+  #    user_frendly_path_check("/") => "Checking /.....Found"
+  
+  def user_frendly_path_check(path)
+    unless path.nil?
+      checking = "Checking #{path}....."
+      response = File.exists?(path) ? "Found".green : "Missing".red
+      answer = checking + response    
+      puts answer
+    else
+      puts "Sorry we could not check your path it was nil: #{path}".red
+      answer = false
+    end
+    answer
+  end
 end
