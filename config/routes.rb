@@ -9,6 +9,8 @@ MinecraftOverview::Application.routes.draw do
   
   resources :maps
   
+  mount Resque::Server, :at => "/resque"
+  
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

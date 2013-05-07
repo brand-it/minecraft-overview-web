@@ -28,6 +28,9 @@ group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
 
+
+gem "resque", :require => "resque/server"# https://github.com/resque/resque
+
 gem 'jquery-rails'
 
 # This is for terminal colors. It uses ANSI color system. Same one used on mac.

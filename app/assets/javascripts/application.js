@@ -13,11 +13,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
+
 //= require jquery_ujs
 //= require underscore.js
 //= require backbone.js
 //= require bootstrap.js
+//= require jquery
 //= require_tree .
 
 $(document).ready(function(){

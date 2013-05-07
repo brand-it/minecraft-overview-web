@@ -54,7 +54,16 @@ module ApplicationHelper
   #    overviewer_config_path => 'javascript/overviewerConfig.js'
 
   def overviewer_config_path
-    'javascript/overviewerConfig.js'
+    'javascript/overviewerConfig.js' if overviewer_config_path_exists?
+  end
+  
+  # This is the check is to see if the overviewer config file is there so we can call the javascript
+  #
+  # call-seq:
+  #    overviewer_config_path_exists? => Boolean
+  
+  def overviewer_config_path_exists?
+    File.exists?("#{Rails.root}/public/javascript/overviewerConfig.js")
   end
   
   # If you need something related to the overview config system you should look to this area

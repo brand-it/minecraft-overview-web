@@ -179,10 +179,10 @@ namespace :map do
   task :implode do
     print "DESTROYING ALL MAP INFORMATION.....".red
     
-    `rm -rf #{download_maps_path}/world.tar.gz`
-    `rm -rf #{maps_path}/world`
+    `rm -rf #{download_maps_path}/*`
+    `rm -rf #{world_maps_path}`
     `rm -rf #{maps_path}/*`
-    `rm -rf #{overviewer_config_path}`
+    `rm -rf #{overviewer_config_js_path}`
     `rm -rf #{overviewer_path}`
     `rm -rf #{base_markers_path}`
     

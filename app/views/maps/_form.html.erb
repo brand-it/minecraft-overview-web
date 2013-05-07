@@ -1,3 +1,11 @@
 <%= form.label :name %>
 <%= form.text_field :name, required: true %>
 <span class="help-block">Give a name to your map</span>
+
+<%= form.label :domain %>
+<%= form.text_field :domain, disabled: true %>
+<span class="help-block">Leave Nil Maybe removed</span>
+
+<%= form.label :path %>
+<%= form.text_field :path, disabled: true %>
+<span class="help-block">Leave Nil Maybe removed</span>
