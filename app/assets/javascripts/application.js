@@ -32,6 +32,7 @@ function mincraftOverviewerSetup() {
 }
 
 $(document).ready(function() {
+    mincraftOverviewerSetup();
     // Todo list
     $(".todo li").click(function() {
         $(this).toggleClass("todo-done");

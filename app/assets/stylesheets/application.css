@@ -33,3 +33,9 @@ body {
 #mcmap label { 
   width: auto; display:inline; 
 }
+
+
+.navbar .nav li.disabled * {
+  color: gray;
+  pointer-events: none;
+}
