@@ -9,7 +9,7 @@ MinecraftOverview::Application.routes.draw do
   
   resources :maps
   
-  mount Resque::Server, :at => "/resque"
+  mount Resque::Server.new, :at => "/resque"
   
 
   # Sample of regular route:
