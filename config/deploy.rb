@@ -43,18 +43,6 @@ namespace :cold do
   end
 end
 
-
-namespace :map do
-  desc "Update the map from the server"
-  task :update do
-    puts `rake map:copy`
-    puts `rake map:generate`
-  end
-  
-  task :implode do
-  end
-end
-
 after "deploy:create_symlink", "config:symlink_database_yml", "config:symlink_overview"
 
 desc "This is used to config that deploy after deploy"
@@ -75,4 +63,8 @@ namespace :config do
   end
 end
 
-
+desc "This is used to config that deploy after deploy"
+namespace :map do
+  task :update do
+  end
+end
