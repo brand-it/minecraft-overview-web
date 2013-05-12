@@ -6,18 +6,21 @@ module TaskHelper
   # Complete message in color green
   # 
   # call-seq:
-  #   complete_message => \e[32complete\e[0m
-  def complete_message
-    "complete".green
+  #    complete_message => \e[32complete\e[0m
+  #    complete_message(complete: "happy") => \e[32happy\e[0m
+  
+  def complete_message(complete: "complete")
+    "#{complete}".green
   end
   
   # Failed message color red
   #
   # call-seq:
   #    failed_message => "\e[31failed\e[0m"
+  #    failed_message(failed: "sad") => \e[32sad\e[0m
   
-  def failed_message
-    "failed".red
+  def failed_message(failed: "failed")
+    "#{failed}".red
   end
   
   # Success message
@@ -38,14 +41,23 @@ module TaskHelper
     "Task could not be completed".red
   end
   
-  # Home Path starting with the root directory
+  # This is where we can store all are downloads that we want to install or run with this application.
+  # 
+  # call-seq:
+  #    temp_downloads_path => String
+  
+  def temp_downloads_path       
+    "#{Rails.root}/tmp/downloads" # These are all the files downloaded
+  end
+  
+  # Home Path starting with the root directory,. This is for th
   #
   #    echo $HOME #=> '/Users/newdark\n'
   #
   # call-seq:
-  #    home_path => `echo $HOME`
+  #    user_home_path => `echo $HOME`
   
-  def home_path
+  def user_home_path
     `echo $HOME`.gsub("\n", "") # This will resolve the absolute path of your home directory
   end
   
@@ -57,7 +69,7 @@ module TaskHelper
   #    shared_path => String
   
   def shared_path
-    "#{home_path}/shared"
+    "#{user_home_path}/shared"
   end
   
   # Shared Public Path
@@ -80,23 +92,31 @@ module TaskHelper
     "#{Rails.root}/public"
   end
   
+  # This is a simple true false method nothing more or less
+  # If some sort of condition is not considered it will return false
+  # Meaning if we for some reason have a problem With the File exists method we will return false
+  #
+  # call-seq:
+  #    path_exists?(String) => Boolean
+  
+  def path_exists?(path)
+    return false if path.nil?
+    return true if File.exists?(path)
+    false
+  end
+  
   # Check if the path is there and provide a user frendly output to console
   #
   # This is going to return a string of the value that is being send as a puts event
   #
   # call-seq:
-  #    user_frendly_path_check("/") => "Checking /.....Found"
+  #    user_frendly_path_check(String) => "Checking /.....Found"
   
-  def user_frendly_path_check(path)
-    unless path.nil?
+  def user_frendly_path_check(path, found: "Found", missing: "Missing")
       checking = "Checking #{path}....."
-      response = File.exists?(path) ? "Found".green : "Missing".red
+      response = path_exists?(path) ? "#{found}".green : "#{missing}".red
       answer = checking + response    
       puts answer
-    else
-      puts "Sorry we could not check your path it was nil: #{path}".red
-      answer = false
-    end
-    answer
+      answer # => String
   end
 end

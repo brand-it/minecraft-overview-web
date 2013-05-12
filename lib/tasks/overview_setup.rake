@@ -4,10 +4,9 @@
 # WRITING TESTS OH GOD NO PLEASE DONT MAKE ME http://robots.thoughtbot.com/post/11957424161/test-rake-tasks-like-a-boss
 
 # This is path information for the current application that you are working on
-temp_downloads_path       = "#{Rails.root}/tmp/downloads" # These are all the files downloaded
 javascript_path           = "#{Rails.root}/public/javascript"
 maps_path                 = "#{Rails.root}/public/maps"
-minecraft_bin_path        = "#{home_path}/.minecraft/bin"
+minecraft_bin_path        = "#{user_home_path}/.minecraft/bin"
 world_maps_path           = "#{maps_path}/world"
 download_maps_path        = "#{maps_path}/downloaded"
 
@@ -32,7 +31,7 @@ python_imaging_url = "http://effbot.org/downloads/Imaging-1.1.7.tar.gz"
 namespace :doctor do
   desc "This is just a nice way to check the health of everything, it will check to see if all your paths are there"
   task :who do
-    paths = [home_path, shared_path, shared_public_path, temp_downloads_path, javascript_path, 
+    paths = [user_home_path, shared_path, shared_public_path, temp_downloads_path, javascript_path, 
        maps_path,minecraft_bin_path, world_maps_path, download_maps_path, sys_maps_path,
        sys_javascript_path, overviewer_config_path, overviewer_generator_path, 
        overviewer_config_js_path, overviewer_path, base_markers_path]
@@ -217,10 +216,15 @@ namespace :map do
   desc "Unzip your downloaded map run rake map:copy first"
   task :unzip do
     
+    puts "Deleting #{world_maps_path}"
+    `rm -rf #{world_maps_path}`
+    user_frendly_path_check!(world_maps_path)
+    
     puts "We could not locate needed file in this path #{download_maps_path}/world.tar.gz".red unless File.exists?("#{download_maps_path}/world.tar.gz")
       
     puts "Unziping #{download_maps_path}/world.tar.gz and moving it to #{maps_path}".yellow
     `tar xvzf #{download_maps_path}/world.tar.gz -C #{maps_path}`
-    puts (File.exists?("#{world_maps_path}") ? success_message : error_message)
+    is_path_there?(world_maps_path)
+    user_frendly_path_check(world_maps_path)
   end
 end
