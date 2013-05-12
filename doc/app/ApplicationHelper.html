@@ -86,6 +86,8 @@
     
     <li><a href="#method-i-overviewer_config_path">#overviewer_config_path</a>
     
+    <li><a href="#method-i-overviewer_config_path_exists-3F">#overviewer_config_path_exists?</a>
+    
   </ul>
 </nav>
 
@@ -113,11 +115,11 @@
   
     <li><a href="./BootstrapHelper.html">BootstrapHelper</a>
   
+    <li><a href="./GenerateMap.html">GenerateMap</a>
+  
     <li><a href="./Map.html">Map</a>
   
     <li><a href="./MapsController.html">MapsController</a>
-  
-    <li><a href="./OverviewGeneratorsController.html">OverviewGeneratorsController</a>
   
     <li><a href="./TaskHelper.html">TaskHelper</a>
   
@@ -364,17 +366,14 @@ information</p>
 to this area</p>
 
 <pre class="ruby"><span class="ruby-identifier">javascript_overviewer_config_content_tag</span> <span class="ruby-comment">#=&gt; &quot;&lt;script src=\&quot;javascript/overviewerConfig.js\&quot; type=\&quot;text/javascript\&quot;&gt;&lt;/script&gt;&quot;</span>
-
-<span class="ruby-identifier">returns</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">overviewer_config_path</span>)
-<span class="ruby-identifier">javascript_overviewer_config_content_tag</span> <span class="ruby-comment">#=&gt; nil</span>
 </pre>
           
 
           
           <div class="method-source-code" id="javascript_overviewer_config_content_tag-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">javascript_overviewer_config_content_tag</span>( <span class="ruby-identifier">options</span> = {} )
-  <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:script</span>, <span class="ruby-keyword">nil</span>, { <span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">JS</span>, <span class="ruby-identifier">src</span><span class="ruby-operator">:</span> <span class="ruby-identifier">overviewer_config_path</span> }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)) <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">overviewer_config_path</span>)
+  <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:script</span>, <span class="ruby-keyword">nil</span>, { <span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">JS</span>, <span class="ruby-identifier">src</span><span class="ruby-operator">:</span> <span class="ruby-identifier">overviewer_config_path</span> }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>))
 <span class="ruby-keyword">end</span></pre>
           </div><!-- javascript_overviewer_config_content_tag-source -->
           
@@ -410,7 +409,7 @@ to this area</p>
           <div class="method-source-code" id="overviewer_config_path-source">
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">overviewer_config_path</span>
-  <span class="ruby-string">&#39;javascript/overviewerConfig.js&#39;</span>
+  <span class="ruby-string">&#39;javascript/overviewerConfig.js&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">overviewer_config_path_exists?</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- overviewer_config_path-source -->
           
@@ -420,6 +419,42 @@ to this area</p>
 
         
       </div><!-- overviewer_config_path-method -->
+
+    
+      <div id="method-i-overviewer_config_path_exists-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            overviewer_config_path_exists? &rarr; Boolean
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>This is the check is to see if the overviewer config file is there so we
+can call the javascript</p>
+          
+
+          
+          <div class="method-source-code" id="overviewer_config_path_exists-3F-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">overviewer_config_path_exists?</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-node">&quot;#{Rails.root}/public/javascript/overviewerConfig.js&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- overviewer_config_path_exists-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- overviewer_config_path_exists-3F-method -->
 
     
     </section><!-- public-instance-method-details -->
