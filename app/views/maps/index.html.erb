@@ -1,55 +1,60 @@
 <div class="row">
-	<div class="span4">
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Domain</th>
-					<th>Path</th>
-					<th>Created</th>
-					<th>Updated</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @maps.each do |map| %>
-				<tr>
-					<td>
-						<%= map.name %>
-					</td>
-					<td>NIL<%#= map.domain %></td>
-					<td>NIL<%#= map.path %></td>
-					<td><%= time_ago_in_words map.created_at %></td>
-					<td><%= time_ago_in_words map.updated_at %></td>
-					<td>
-						<div class="btn-group">
-							<%= link_to edit_map_path(map), class: "btn btn-primary" do %>
-								<%= bootstrap_icon("icon-map-marker") %>
-								Edit
-							<% end %>
-							<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<%= link_to edit_map_path(map), 
-									method: :destroy, confirm: "Are you sure you want to delete #{map.name}?" do %>
-										<%= bootstrap_icon("icon-trash") %>
-										Delete
-									<% end %>
-								</li>
-							</ul>
-						</div>
-					</td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-</div>
+  <div class="span12">
+    <% if overviewer_config_path_exists? %>
+      <%= content_tag :div, nil, id: "mcmap"  %>
+    <% else %>
+      <h1>Missing map</h1>
+      <p>Sorry we lost the map information needed in order to render this map. We are still in alpha so at some point I will get this down.</p>
+      <p>Also that table below is useless. I am trying to use it to track version of the maps but it does not work.</p>
+    <% end %>
+  </div><!-- span12 -->
+</div><!-- row -->
 
 
-<%#= link_to_with_icon("Add Map", new_map_path, "icon-star") %>
-
-
-
-
-
+<div class="row">
+  <div class="span12">
+    <h1>Update Information Alpha</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Domain</th>
+          <th>Path</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @maps.each do |map| %>
+          <tr>
+            <td>
+              <%= map.name %>
+            </td>
+            <td>NIL<%#= map.domain %></td>
+            <td>NIL<%#= map.path %></td>
+            <td><%= time_ago_in_words map.created_at %></td>
+            <td><%= time_ago_in_words map.updated_at %></td>
+            <td>
+              <div class="btn-group">
+                <%= link_to edit_map_path(map), class: "btn btn-primary" do %>
+                  <%= bootstrap_icon("icon-map-marker") %>
+                  Edit
+                <% end %>
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to edit_map_path(map), method: :destroy, confirm: "Are you sure you want to delete #{map.name}?" do %>
+                      <%= bootstrap_icon("icon-trash") %>
+                      Delete
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- span12 -->
+</div><!-- row -->

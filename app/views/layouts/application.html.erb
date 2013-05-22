@@ -24,9 +24,9 @@
                         <ul class="nav">
                             <li><%= link_to "Welcome", welcome_path %></li>
                             <li><%= link_to "Rendered Map", maps_path %></li>
-                            <li class="dropdown">
+                            <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Go-To <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+                                <ul>
                                     <li><%= link_to "McMyAdmin", "http://mcadmin.r3dux.net"%></li>
                                     <li><%= link_to "r3dux.net", "http://r3dux.net"%></li>
                                 </ul><!-- .dropdown-menu -->
@@ -38,8 +38,19 @@
         </div><!-- .navbar .navbar-inverse .navbar-fixed-top -->
 
         <div class="container">
-			<%= bootstrap_flash %>
+            <%= bootstrap_flash %>
             <%= yield %>
         </div>
+        
+        <footer>
+          
+          <div class="container">
+            <div class="row">
+              <div class="span12">
+                © R3DUX 2013 Powered by <a href="http://twitter.github.io/bootstrap">Twitter Bootstrap</a> & <a href="http://designmodo.com">Flat-UI
+                </div> <!-- /span7 -->
+              </div>
+            </div>
+        </footer>
     </body>
 </html>

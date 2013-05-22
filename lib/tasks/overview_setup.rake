@@ -163,6 +163,12 @@ namespace :compile do
   end
 end
 
+namespace :minecraft do
+  task :textures do
+    puts `sudo wget -N http://s3.amazonaws.com/MinecraftDownload/minecraft.jar -P #{minecraft_bin_path}`
+  end
+end
+
 namespace :map do
   desc "First Time setup for you maps"
   task :cold do

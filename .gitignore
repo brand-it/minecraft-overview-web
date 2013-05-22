@@ -26,6 +26,7 @@ public/css/*
 maps/*
 lib/tasks/overview_generator/build
 *.pyc
+*.orig
 
 *.DS_Store
 .DS_Store
@@ -35,3 +36,4 @@ lib/tasks/overview_generator/overviewer_core/overviewer_version.py
 
 public/maps
 public/javascript
+config/database.yml

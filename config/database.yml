@@ -1,21 +1,26 @@
 defaults: &defaults
   adapter:  postgresql
-  host:     localhost
-  username: newdark
-  password: ""
+  username: bran0899
+  password: 
+  host:     127.0.0.1
+  encoding: utf8
+
 
 
 development:
-  database: minecraftoverview_development
   <<: *defaults
+  database: minecraftoverview_development
+
 
 test:
-  database: minecraftoverview_test
   <<: *defaults
+  database: minecraftoverview_test
+
 
 production:
-  database: minecraftoverview_production
   <<: *defaults
+  database: minecraftoverview_production
+
 
 
 # # SQLite version 3.x
