@@ -193,6 +193,7 @@ namespace :map do
   desc "Generate the map located in #{sys_javascript_path}"
   task :generate do
     puts "We could not located a map in this path #{maps_path}/world".red unless File.exists?("#{world_maps_path}")
+    puts "Generating Mincraft Map Please Wait this could take some time."
     puts `python #{overviewer_generator_path}/overviewer.py --config=#{overviewer_config_path}`
     puts (File.exists?(overviewer_generator_path) ? complete_message : failed_message)
   end
